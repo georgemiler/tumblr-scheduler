@@ -1,3 +1,4 @@
+@section('appName', 'Tumblr Scheduler');
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>App Name - @yield('title')</title>
+    <title>@yield('appName') - @yield('title')</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="/css/bootstrap.min.css" rel="stylesheet">
@@ -82,4 +83,3 @@
 </body>
 
 </html>
-
