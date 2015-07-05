@@ -5,12 +5,14 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Tumblr\API\Client as TumblrClient;
 
-class TumblrServiceProvider extends ServiceProvider {
+class TumblrServiceProvider extends ServiceProvider
+{
 
     /**
      * Register
      */
-    public function register() {
+    public function register()
+    {
         \Dotenv::required(['TUMBLR_CONSUMER_KEY', 'TUMBLR_CONSUMER_SECRET', 'TUMBLR_TOKEN', 'TUMBLR_TOKEN_SECRET']);
 
         $this->app->singleton('Tumblr\API\Client', function ($app) {
