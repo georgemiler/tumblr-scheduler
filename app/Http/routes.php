@@ -1,8 +1,8 @@
 <?php
 
 Route::get('/', [
-    'as' => 'home',
-    'uses' => 'HomeController@index'
+    'as' => 'dashboard',
+    'uses' => 'DashboardController@index'
 ]);
 
 
