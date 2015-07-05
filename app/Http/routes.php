@@ -1,21 +1,55 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register all of the routes for an application.
-| It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the controller to call when that URI is requested.
-|
-*/
+Route::get('/', [
+    'as' => 'home',
+    'uses' => 'HomeController@index'
+]);
 
-Route::get('/', 'WelcomeController@index');
 
-Route::get('home', 'HomeController@index');
+//Authentication
+Route::get('auth/login', [
+    'as' => 'auth.login',
+    'uses' => 'Auth\AuthController@getLogin'
+]);
 
-Route::controllers([
-    'auth' => 'Auth\AuthController',
-    'password' => 'Auth\PasswordController',
+Route::post('auth/login', [
+    'as' => 'auth.login',
+    'uses' => 'Auth\AuthController@postLogin'
+]);
+
+Route::get('auth/logout', [
+    'as' => 'auth.logout',
+    'uses' => 'Auth\AuthController@getLogout'
+]);
+
+//User Registration
+Route::get('auth/register', [
+    'as' => 'auth.register',
+    'uses' => 'Auth\AuthController@getRegister'
+]);
+
+Route::post('auth/register', [
+    'as' => 'auth.register',
+    'uses' => 'Auth\AuthController@postRegister'
+]);
+
+//Password reset
+Route::get('password/email', [
+    'as' => 'password.reset',
+    'uses' => 'Auth\PasswordController@getEmail'
+]);
+
+Route::post('password/email', [
+    'as' => 'password.reset',
+    'uses' => 'Auth\PasswordController@postEmail'
+]);
+
+Route::get('password/reset/{token}', [
+    'as' => 'password.reset.token',
+    'uses' => 'Auth\PasswordController@getReset'
+]);
+
+Route::post('password/reset', [
+    'as' => 'password.reset.token',
+    'uses' => 'Auth\PasswordController@postReset'
 ]);
