@@ -43,18 +43,24 @@
             <!-- Page Heading -->
             <div class="row">
                 <div class="col-lg-12">
+                    @if (count($errors) > 0)
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
                     <h1 class="page-header">
-                        Blank Page
-                        <small>Subheading</small>
+                        @yield('title')
+                        <small>@yield('subheading')</small>
                     </h1>
-                    <ol class="breadcrumb">
-                        <li>
-                            <i class="fa fa-dashboard"></i> <a href="index.html">Dashboard</a>
-                        </li>
-                        <li class="active">
-                            <i class="fa fa-file"></i> Blank Page
-                        </li>
-                    </ol>
+
                 </div>
             </div>
             <!-- /.row -->

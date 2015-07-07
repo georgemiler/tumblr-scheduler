@@ -37,7 +37,23 @@
     @show
 
     <div id="page-wrapper">
-
+        @if (count($errors) > 0)
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        @endif
+            <h1 class="page-header">
+                @yield('title')
+                <small>@yield('subheading')</small>
+            </h1>
         @yield('content')
 
     </div>
