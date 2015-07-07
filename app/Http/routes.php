@@ -1,10 +1,10 @@
 <?php
 
+//Dashboard
 Route::get('/', [
     'as' => 'dashboard',
     'uses' => 'DashboardController@index'
 ]);
-
 
 //Authentication
 Route::get('auth/login', [
@@ -52,4 +52,15 @@ Route::get('password/reset/{token}', [
 Route::post('password/reset', [
     'as' => 'password.reset.token',
     'uses' => 'Auth\PasswordController@postReset'
+]);
+
+//UserSettings
+Route::get('/user/settings', [
+    'as' => 'user.settings',
+    'uses' => 'UserSettingsController@index'
+]);
+
+Route::post('/user/settings', [
+    'as' => 'user.settings',
+    'uses' => 'UserSettingsController@store'
 ]);

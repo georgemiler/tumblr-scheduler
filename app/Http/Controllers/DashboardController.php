@@ -1,6 +1,5 @@
-<?php namespace App\Http\Controllers;
-
-use App\UserSettings;
+<?php
+namespace App\Http\Controllers;
 
 class DashboardController extends Controller
 {
