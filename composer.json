@@ -9,6 +9,7 @@
   "type": "project",
   "require": {
     "laravel/framework": "5.1.*",
+    "laravelcollective/html": "5.1.*",
     "tumblr/tumblr": "dev-master",
     "barryvdh/laravel-ide-helper": "^2.0",
     "doctrine/dbal": "~2.3"
