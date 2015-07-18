@@ -13,6 +13,11 @@ class UserSettingsController extends Controller
      */
     protected $User;
 
+    /**
+     * Guard instance
+     *
+     * @var Guard
+     */
     protected $Auth;
 
     public function __construct(User $user, Guard $auth)
