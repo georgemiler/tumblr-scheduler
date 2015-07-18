@@ -5,27 +5,84 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-6">
-                <form class="form-horizontal" role="form" method="POST" action="{{ URL::route('user.settings') }}">
-                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                {!! Form::open(['route' => 'user.settings', 'method' => 'POST']) !!}
+
+                    {!! Form::token() !!}
 
                     <div class="form-group">
-                        <label>Tumblr Consumer Key</label>
-                        <input type="text" class="form-control" name="{{ \App\UserSettings::TUMBLR_CONSUMER_KEY }}" value="{{ old(\App\UserSettings::TUMBLR_CONSUMER_KEY) }}">
+                        {!! Form::label('Name') !!}
+                        {!! Form::input(
+                                'text',
+                                'name',
+                                old('name', isset($user->name) ? $user->name : null),
+                                ['class' => 'form-control']
+                            )
+                        !!}
                     </div>
 
                     <div class="form-group">
-                        <label>Tumblr Consumer Secret</label>
-                        <input type="text" class="form-control" name="{{ \App\UserSettings::TUMBLR_CONSUMER_SECRET }}" value="{{ old(\App\UserSettings::TUMBLR_CONSUMER_SECRET) }}">
+                        {!! Form::label('Email') !!}
+                        {!! Form::input(
+                                'text',
+                                'email',
+                                old('email', isset($user->email) ? $user->email : null),
+                                ['class' => 'form-control']
+                            )
+                        !!}
                     </div>
 
                     <div class="form-group">
-                        <label>Tumblr Token</label>
-                        <input type="text" class="form-control" name="{{ \App\UserSettings::TUMBLR_TOKEN }}" value="{{ old(\App\UserSettings::TUMBLR_TOKEN) }}">
+                        {!! Form::label('Password') !!}
+                        {!! Form::input('password', 'password', null, ['class' => 'form-control']) !!}
                     </div>
 
                     <div class="form-group">
-                        <label>Tumblr Secret</label>
-                        <input type="text" class="form-control" name="{{ \App\UserSettings::TUMBLR_TOKEN_SECRET }}" value="{{ old(\App\UserSettings::TUMBLR_TOKEN_SECRET) }}">
+                        {!! Form::label('Password (again)') !!}
+                        {!! Form::input('password', 'confirm_password', null, ['class' => 'form-control']) !!}
+                    </div>
+
+                    <div class="form-group">
+                        {!! Form::label('Tumblr Consumer Key') !!}
+                        {!! Form::input(
+                                'text',
+                                \App\UserSettings::TUMBLR_CONSUMER_KEY,
+                                old(\App\UserSettings::TUMBLR_CONSUMER_KEY, isset($userSettings[\App\UserSettings::TUMBLR_CONSUMER_KEY]) ? $userSettings[\App\UserSettings::TUMBLR_CONSUMER_KEY] : null),
+                                ['class' => 'form-control']
+                            )
+                        !!}
+                    </div>
+
+                    <div class="form-group">
+                        {!! Form::label('Tumblr Consumer Secret') !!}
+                        {!! Form::input(
+                                'text',
+                                \App\UserSettings::TUMBLR_CONSUMER_SECRET,
+                                old(\App\UserSettings::TUMBLR_CONSUMER_SECRET, isset($userSettings[\App\UserSettings::TUMBLR_CONSUMER_SECRET]) ? $userSettings[\App\UserSettings::TUMBLR_CONSUMER_SECRET] : null),
+                                ['class' => 'form-control']
+                            )
+                        !!}
+                    </div>
+
+                    <div class="form-group">
+                        {!! Form::label('Tumblr Token') !!}
+                        {!! Form::input(
+                                'text',
+                                \App\UserSettings::TUMBLR_TOKEN,
+                                old(\App\UserSettings::TUMBLR_TOKEN, isset($userSettings[\App\UserSettings::TUMBLR_TOKEN]) ? $userSettings[\App\UserSettings::TUMBLR_TOKEN] : null),
+                                ['class' => 'form-control']
+                            )
+                        !!}
+                    </div>
+
+                    <div class="form-group">
+                        {!! Form::label('Tumblr Token Secret') !!}
+                        {!! Form::input(
+                                'text',
+                                \App\UserSettings::TUMBLR_TOKEN_SECRET,
+                                old(\App\UserSettings::TUMBLR_TOKEN_SECRET, isset($userSettings[\App\UserSettings::TUMBLR_TOKEN_SECRET]) ? $userSettings[\App\UserSettings::TUMBLR_TOKEN_SECRET] : null),
+                                ['class' => 'form-control']
+                            )
+                        !!}
                     </div>
 
                     <div class="form-group">
@@ -34,7 +91,7 @@
                         </button>
                     </div>
 
-                </form>
+                {!! Form::close() !!}
             </div>
         </div>
     </div>

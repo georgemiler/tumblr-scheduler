@@ -30,13 +30,14 @@ class UserSettingsController extends Controller
 
     public function index()
     {
+        $user = $this->Auth->getUser();
         $userSettings = $this->Auth->getUser()->settings()->all();
 
-        return view('user-settings.index')->with('userSettings', $userSettings);
+        return \View::make('user-settings.index', compact('user', 'userSettings'));
     }
 
     public function store()
     {
-
+        var_dump(\Input::all());
     }
 }
