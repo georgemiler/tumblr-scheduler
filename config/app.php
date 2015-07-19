@@ -148,7 +148,7 @@ return [
         App\Providers\TumblrServiceProvider::class,
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
-
+        Atrauzzi\LaravelDoctrine\ServiceProvider::class
     ],
 
     /*
@@ -197,7 +197,8 @@ return [
         'Validator' => 'Illuminate\Support\Facades\Validator',
         'View' => 'Illuminate\Support\Facades\View',
         'Form' => Collective\Html\FormFacade::class,
-        'Html' => Collective\Html\HtmlFacade::class
+        'Html' => Collective\Html\HtmlFacade::class,
+        'EntityManager' => Atrauzzi\LaravelDoctrine\Support\Facades\Doctrine::class
 
     ],
 
