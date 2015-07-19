@@ -1,6 +1,8 @@
 <?php
 namespace App\Http\Controllers;
 
+
+use App\Repositories\User\UserRepositoryInterface;
 use App\User;
 use Illuminate\Auth\Guard;
 
@@ -20,10 +22,16 @@ class UserSettingsController extends Controller
      */
     protected $Auth;
 
-    public function __construct(User $user, Guard $auth)
+    /**
+     * @var UserRepositoryInterface
+     */
+    protected $UserRepository;
+
+    public function __construct(User $user, Guard $auth, UserRepositoryInterface $userRepository)
     {
         $this->Auth = $auth;
         $this->User = $user;
+        $this->UserRepository = $userRepository;
 
         $this->middleware('auth');
     }
