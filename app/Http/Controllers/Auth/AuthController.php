@@ -23,4 +23,25 @@ class AuthController extends Controller
 
         $this->middleware('guest', ['except' => 'getLogout']);
     }
+
+    public function tumblrLogin()
+    {
+        return \Socialize::with('tumblr')->redirect();
+    }
+
+    public function tumblrLoginCallback()
+    {
+        $user = \Socialize::with('tumblr')->user();
+        var_dump($user);
+
+        $client = new \Tumblr\API\Client(env('TUMBLR_TOKEN'), env('TUMBLR_TOKEN_SECRET'));
+        $client->setToken($user->token, $user->tokenSecret);
+
+
+        var_dump($client->getUserInfo()->user);
+
+
+
+        exit();
+    }
 }

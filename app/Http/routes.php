@@ -22,6 +22,16 @@ Route::get('auth/logout', [
     'uses' => 'Auth\AuthController@getLogout'
 ]);
 
+Route::any('auth/tumblr', [
+    'as' => 'auth.tumblr',
+    'uses' => 'Auth\AuthController@tumblrLogin'
+]);
+
+Route::any('auth/tumblr/callback', [
+    'as' => 'auth.tumblr.callback',
+    'uses' => 'Auth\AuthController@tumblrLoginCallback'
+]);
+
 //User Registration
 Route::get('auth/register', [
     'as' => 'auth.register',

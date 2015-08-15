@@ -146,9 +146,10 @@ return [
         'App\Providers\EventServiceProvider',
         'App\Providers\RouteServiceProvider',
         App\Providers\DatabaseServiceProvider::class,
-        App\Providers\TumblrServiceProvider::class,
+//        App\Providers\TumblrServiceProvider::class,
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
+        SocialiteProviders\Manager\ServiceProvider::class
 
     ],
 
@@ -198,7 +199,8 @@ return [
         'Validator' => 'Illuminate\Support\Facades\Validator',
         'View' => 'Illuminate\Support\Facades\View',
         'Form' => Collective\Html\FormFacade::class,
-        'Html' => Collective\Html\HtmlFacade::class
+        'Html' => Collective\Html\HtmlFacade::class,
+        'Socialize' => Laravel\Socialite\Facades\Socialite::class,
 
     ],
 
