@@ -27,11 +27,10 @@ class UserSettingsController extends Controller
      */
     protected $UserRepository;
 
-    public function __construct(User $user, Guard $auth, UserRepositoryInterface $userRepository)
+    public function __construct(User $user, Guard $auth)
     {
         $this->Auth = $auth;
         $this->User = $user;
-        $this->UserRepository = $userRepository;
 
         $this->middleware('auth');
     }
@@ -39,6 +38,7 @@ class UserSettingsController extends Controller
     public function index()
     {
         $user = $this->Auth->getUser();
+
         $userSettings = $this->Auth->getUser()->settings()->all();
 
         return \View::make('user-settings.index', compact('user', 'userSettings'));

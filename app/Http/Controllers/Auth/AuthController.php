@@ -1,27 +1,34 @@
 <?php namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Contracts\Auth\Guard;
-use Illuminate\Contracts\Auth\Registrar;
+use App\Services\TumblrService;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
 class AuthController extends Controller
 {
-
     use AuthenticatesAndRegistersUsers;
 
     protected $redirectTo = '/';
 
     /**
-     * Create a new authentication controller instance.
-     *
-     * @param  \Illuminate\Contracts\Auth\Guard $auth
-     * @param  \Illuminate\Contracts\Auth\Registrar $registrar
+     * @var Client
      */
-    public function __construct()
-    {
+    protected $tumblrService;
 
-        $this->middleware('guest', ['except' => 'getLogout']);
+    /**
+     * Constructor
+     */
+    public function __construct(TumblrService $tumblrService)
+    {
+        $this->middleware('guest', [
+            'except' => [
+                'getLogout',
+                'tumblrLogin',
+                'tumblrLoginCallback'
+            ]
+        ]);
+
+        $this->tumblrService = $tumblrService;
     }
 
     public function tumblrLogin()
@@ -32,15 +39,8 @@ class AuthController extends Controller
     public function tumblrLoginCallback()
     {
         $user = \Socialize::with('tumblr')->user();
-        var_dump($user);
-
-        $client = new \Tumblr\API\Client(env('TUMBLR_TOKEN'), env('TUMBLR_TOKEN_SECRET'));
-        $client->setToken($user->token, $user->tokenSecret);
-
-
-        var_dump($client->getUserInfo()->user);
-
-
+        $this->tumblrService->getTumblrClient()->setToken($user->token, $user->tokenSecret);
+        var_dump($this->tumblrService->getTumblrClient()->getUserInfo());
 
         exit();
     }
