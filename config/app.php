@@ -148,7 +148,8 @@ return [
         App\Providers\TumblrServiceProvider::class,
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
-        SocialiteProviders\Manager\ServiceProvider::class
+        SocialiteProviders\Manager\ServiceProvider::class,
+        'Szykra\Notifications\NotificationServiceProvider'
 
     ],
 
@@ -192,7 +193,7 @@ return [
         'Response' => 'Illuminate\Support\Facades\Response',
         'Route' => 'Illuminate\Support\Facades\Route',
         'Schema' => 'Illuminate\Support\Facades\Schema',
-        'Session' => 'Illuminate\Support\Facades\Session',
+        'Session' => \Illuminate\Support\Facades\Session::class,
         'Storage' => 'Illuminate\Support\Facades\Storage',
         'URL' => 'Illuminate\Support\Facades\URL',
         'Validator' => 'Illuminate\Support\Facades\Validator',
@@ -200,6 +201,7 @@ return [
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
         'Socialize' => Laravel\Socialite\Facades\Socialite::class,
+        'Flash' => 'Szykra\Notifications\Flash'
 
     ],
 
