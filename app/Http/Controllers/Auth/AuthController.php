@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Controller;
 use App\Services\TumblrService;
+use App\UserSettings;
+use Illuminate\Auth\Guard;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
 class AuthController extends Controller
@@ -16,19 +18,26 @@ class AuthController extends Controller
     protected $tumblrService;
 
     /**
+     * @var Guard
+     */
+    protected $auth;
+
+    /**
      * Constructor
      */
-    public function __construct(TumblrService $tumblrService)
+    public function __construct(TumblrService $tumblrService, Guard $auth)
     {
-        $this->middleware('guest', [
+        $this->middleware('auth', [
             'except' => [
-                'getLogout',
-                'tumblrLogin',
-                'tumblrLoginCallback'
+                'getLogin',
+                'postLogin',
+                'getRegister',
+                'postRegister'
             ]
         ]);
 
         $this->tumblrService = $tumblrService;
+        $this->auth = $auth;
     }
 
     public function tumblrLogin()
@@ -38,10 +47,15 @@ class AuthController extends Controller
 
     public function tumblrLoginCallback()
     {
-        $user = \Socialize::with('tumblr')->user();
-        $this->tumblrService->getTumblrClient()->setToken($user->token, $user->tokenSecret);
-        var_dump($this->tumblrService->getTumblrClient()->getUserInfo());
-
-        exit();
+        try {
+            $tumblrUser = \Socialize::with('tumblr')->user();
+            $this->tumblrService->getTumblrClient()->setToken($tumblrUser->token, $tumblrUser->tokenSecret);
+            \Auth::user()->settings()->set(UserSettings::TUMBLR_TOKEN, $tumblrUser->token);
+            \Auth::user()->settings()->set(UserSettings::TUMBLR_TOKEN_SECRET, $tumblrUser->tokenSecret);
+            \Flash::success("Successfully connected your Tumblr account.");
+            return redirect()->route('user.settings');
+        } catch (\Exception $e) {
+            return redirect()->route('user.settings')->withErrors('Unexpected error logging in with Tumblr.');
+        }
     }
 }

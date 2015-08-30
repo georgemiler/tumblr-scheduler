@@ -1,11 +1,15 @@
-@extends('layouts/authenticated')
+@extends('layouts/main')
 @section('title', 'User Settings')
 
 @section('content')
     <div class="container-fluid">
         <div class="row">
-            <div class="col-lg-6">
-                {!! Form::open(['route' => 'user.settings', 'method' => 'POST']) !!}
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">User Settings</h3>
+                </div>
+                <div class="panel-body">
+                    {!! Form::open(['route' => 'user.settings', 'method' => 'POST']) !!}
 
                     {!! Form::token() !!}
 
@@ -42,28 +46,6 @@
                     </div>
 
                     <div class="form-group">
-                        {!! Form::label('Tumblr Consumer Key') !!}
-                        {!! Form::input(
-                                'text',
-                                \App\UserSettings::TUMBLR_CONSUMER_KEY,
-                                old(\App\UserSettings::TUMBLR_CONSUMER_KEY, isset($userSettings[\App\UserSettings::TUMBLR_CONSUMER_KEY]) ? $userSettings[\App\UserSettings::TUMBLR_CONSUMER_KEY] : null),
-                                ['class' => 'form-control']
-                            )
-                        !!}
-                    </div>
-
-                    <div class="form-group">
-                        {!! Form::label('Tumblr Consumer Secret') !!}
-                        {!! Form::input(
-                                'text',
-                                \App\UserSettings::TUMBLR_CONSUMER_SECRET,
-                                old(\App\UserSettings::TUMBLR_CONSUMER_SECRET, isset($userSettings[\App\UserSettings::TUMBLR_CONSUMER_SECRET]) ? $userSettings[\App\UserSettings::TUMBLR_CONSUMER_SECRET] : null),
-                                ['class' => 'form-control']
-                            )
-                        !!}
-                    </div>
-
-                    <div class="form-group">
                         {!! Form::label('Tumblr Token') !!}
                         {!! Form::input(
                                 'text',
@@ -91,9 +73,9 @@
                         </button>
                     </div>
 
-                {!! Form::close() !!}
+                    {!! Form::close() !!}
+                </div>
             </div>
         </div>
     </div>
-</div>
 @endsection

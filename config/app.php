@@ -149,7 +149,7 @@ return [
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         SocialiteProviders\Manager\ServiceProvider::class,
-        'Szykra\Notifications\NotificationServiceProvider'
+        Szykra\Notifications\NotificationServiceProvider::class
 
     ],
 
@@ -201,7 +201,7 @@ return [
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
         'Socialize' => Laravel\Socialite\Facades\Socialite::class,
-        'Flash' => 'Szykra\Notifications\Flash'
+        'Flash' => Szykra\Notifications\Flash::class
 
     ],
 

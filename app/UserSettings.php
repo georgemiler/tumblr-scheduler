@@ -7,8 +7,6 @@ use Exception;
 class UserSettings
 {
 
-    const TUMBLR_CONSUMER_KEY = 'tumblr.consumer_key';
-    const TUMBLR_CONSUMER_SECRET = 'tumblr.consumer_secret';
     const TUMBLR_TOKEN = 'tumblr.token';
     const TUMBLR_TOKEN_SECRET = 'tumblr.token_secret';
 
@@ -28,8 +26,6 @@ class UserSettings
      * @var array
      */
     protected $allowedSettings = [
-        self::TUMBLR_CONSUMER_KEY,
-        self::TUMBLR_CONSUMER_SECRET,
         self::TUMBLR_TOKEN,
         self::TUMBLR_TOKEN_SECRET
     ];

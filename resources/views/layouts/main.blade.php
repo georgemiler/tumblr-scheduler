@@ -1,4 +1,4 @@
-@section('appName', 'Tumblr Scheduler');
+@section('appName', 'Tumblr Scheduler')
 <!DOCTYPE html>
 <html lang="en">
 
@@ -49,21 +49,19 @@
                 @yield('appName')
             </a>
         </div>
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-                <li>
-                    <a href="#">About</a>
-                </li>
-                <li>
-                    <a href="#">Services</a>
-                </li>
-                <li>
-                    <a href="#">Contact</a>
-                </li>
-            </ul>
-        </div>
-        <!-- /.navbar-collapse -->
+
+
+        @if (Auth::guest())
+            @section('nav')
+                @include('nav.unauthenticated')
+            @show
+        @else
+            @section('nav')
+                @include('nav.authenticated')
+            @show
+        @endif
+
+
     </div>
     <!-- /.container -->
 </nav>
