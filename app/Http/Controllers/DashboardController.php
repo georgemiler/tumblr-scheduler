@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 
+use App\Like;
 use App\Services\TumblrService;
 
 class DashboardController extends Controller
@@ -28,10 +29,25 @@ class DashboardController extends Controller
     public function index()
     {
         $recentLikes = [];
+        $numLikes = 0;
+
+        $likes = $this->tumblr->getMostRecentLikes();
+
+        foreach ($likes as $like) {
+            $dbLike = new Like();
+            $dbLike->updateOrCreate(['id' => $like->id], [
+                'id' => $like->id,
+                'data' => $like
+            ]);
+
+        }
 
         try {
-            $recentLikes = $this->tumblr->getMostRecentLikes();
-            $numLikes = $this->tumblr->getNumLikes();
+
+
+//            $this->tumblr->getAllLikedPosts();
+//            $recentLikes = $this->tumblr->getMostRecentLikes();
+//            $numLikes = $this->tumblr->getNumLikes();
         } catch (\Exception $e) {
         }
 

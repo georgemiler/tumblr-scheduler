@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Like;
 use App\User;
 use Tumblr\API\Client;
 
@@ -53,5 +54,39 @@ class TumblrService {
         return $this->getTumblrClient()->getLikedPosts([
             'limit' => $limit
         ])->liked_posts;
+    }
+
+    public function getAllLikedPosts()
+    {
+        $currentOffset = 0;
+        $likes = [];
+        $moreLikes = true;
+
+        while ($moreLikes == true) {
+            $currentLikes = $this->getTumblrClient()->getLikedPosts([
+                'offset' => $currentOffset
+            ]);
+
+            $totalNumLikes = $currentLikes->liked_count;
+
+            $currentOffset += count($currentLikes->liked_posts);
+
+            foreach ($currentLikes->liked_posts as $like) {
+                $likes[$like->id] = $like;
+            }
+
+
+            if ($currentOffset >= $totalNumLikes) {
+                $moreLikes = false;
+            }
+
+        }
+
+        return $likes;
+    }
+
+    public function syncLikes(Like $likeModel)
+    {
+
     }
 }
