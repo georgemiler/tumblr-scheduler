@@ -53,9 +53,9 @@ class AuthController extends Controller
             \Auth::user()->settings()->set(UserSettings::TUMBLR_TOKEN, $tumblrUser->token);
             \Auth::user()->settings()->set(UserSettings::TUMBLR_TOKEN_SECRET, $tumblrUser->tokenSecret);
             \Flash::success("Successfully connected your Tumblr account.");
-            return redirect()->route('user.settings');
+            return redirect()->route('dashboard');
         } catch (\Exception $e) {
-            return redirect()->route('user.settings')->withErrors('Unexpected error logging in with Tumblr.');
+            return redirect()->route('dashboard')->withErrors('Unexpected error logging in with Tumblr.');
         }
     }
 }

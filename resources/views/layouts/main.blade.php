@@ -82,7 +82,7 @@
         </div>
     @endif
 
-    @include('notifications::flash')
+    @include('flash')
 
     @yield('content')
 

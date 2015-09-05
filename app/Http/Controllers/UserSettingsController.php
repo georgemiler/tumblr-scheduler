@@ -46,6 +46,11 @@ class UserSettingsController extends Controller
 
     public function store()
     {
-        var_dump(\Input::all());
+        $user = $this->Auth->getUser();
+
+        $data = \Input::all();
+        var_dump($data);
+
+
     }
 }

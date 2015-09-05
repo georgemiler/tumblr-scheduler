@@ -26,6 +26,32 @@ class TumblrService {
 
     public function userHasTumblrConfigured(User $user)
     {
+        if (empty($user->settings['tumblr.token']) || empty($user->settings['tumblr.token_secret'])) {
+            return false;
+        }
+        return true;
+    }
 
+    public function setupUserTumblrConfig(User $user)
+    {
+        if ($this->userHasTumblrConfigured($user)) {
+            $this->getTumblrClient()->setToken($user->settings['tumblr.token'], $user->settings['tumblr.token_secret']);
+            return $this;
+        }
+    }
+
+    /**
+     * @return int
+     */
+    public function getNumLikes()
+    {
+        return $this->getTumblrClient()->getLikedPosts(['limit' => 1])->liked_count;
+    }
+
+    public function getMostRecentLikes($limit = 10)
+    {
+        return $this->getTumblrClient()->getLikedPosts([
+            'limit' => $limit
+        ])->liked_posts;
     }
 }

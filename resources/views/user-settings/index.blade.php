@@ -46,28 +46,6 @@
                     </div>
 
                     <div class="form-group">
-                        {!! Form::label('Tumblr Token') !!}
-                        {!! Form::input(
-                                'text',
-                                \App\UserSettings::TUMBLR_TOKEN,
-                                old(\App\UserSettings::TUMBLR_TOKEN, isset($userSettings[\App\UserSettings::TUMBLR_TOKEN]) ? $userSettings[\App\UserSettings::TUMBLR_TOKEN] : null),
-                                ['class' => 'form-control']
-                            )
-                        !!}
-                    </div>
-
-                    <div class="form-group">
-                        {!! Form::label('Tumblr Token Secret') !!}
-                        {!! Form::input(
-                                'text',
-                                \App\UserSettings::TUMBLR_TOKEN_SECRET,
-                                old(\App\UserSettings::TUMBLR_TOKEN_SECRET, isset($userSettings[\App\UserSettings::TUMBLR_TOKEN_SECRET]) ? $userSettings[\App\UserSettings::TUMBLR_TOKEN_SECRET] : null),
-                                ['class' => 'form-control']
-                            )
-                        !!}
-                    </div>
-
-                    <div class="form-group">
                         <button type="submit" class="btn btn-primary">
                             Save
                         </button>
