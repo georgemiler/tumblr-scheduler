@@ -31,25 +31,7 @@ class DashboardController extends Controller
         $recentLikes = [];
         $numLikes = 0;
 
-        $likes = $this->tumblr->getMostRecentLikes();
 
-        foreach ($likes as $like) {
-            $dbLike = new Like();
-            $dbLike->updateOrCreate(['id' => $like->id], [
-                'id' => $like->id,
-                'data' => $like
-            ]);
-
-        }
-
-        try {
-
-
-//            $this->tumblr->getAllLikedPosts();
-//            $recentLikes = $this->tumblr->getMostRecentLikes();
-//            $numLikes = $this->tumblr->getNumLikes();
-        } catch (\Exception $e) {
-        }
 
         return view('dashboard.index')->with([
             'recentLikes' => $recentLikes,

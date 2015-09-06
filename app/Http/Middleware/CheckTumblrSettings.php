@@ -42,7 +42,7 @@ class CheckTumblrSettings
     {
         if ($this->auth->check()) {
             $user = $this->auth->user();
-            if ($this->tumblr->userHasTumblrConfigured($this->auth->user())) {
+            if ($this->tumblr->canUserConnect($user)) {
                 $this->tumblr->setupUserTumblrConfig($user);
             } else {
                 $authTumblrUrl = $this->url->route('auth.tumblr');

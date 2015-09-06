@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "0d206492e04c0910002c9ca5822fee82",
+    "hash": "f71440a29ec2a8361635b3a6af2cc2d9",
     "packages": [
         {
             "name": "barryvdh/laravel-ide-helper",
@@ -1127,16 +1127,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v5.1.10",
+            "version": "v5.1.16",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "d47ccc8de10ccb6f328cc90f901ca5e47e077c93"
+                "reference": "e34dcc0c57e0f560248aec5128161256ff8bf4e1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/d47ccc8de10ccb6f328cc90f901ca5e47e077c93",
-                "reference": "d47ccc8de10ccb6f328cc90f901ca5e47e077c93",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/e34dcc0c57e0f560248aec5128161256ff8bf4e1",
+                "reference": "e34dcc0c57e0f560248aec5128161256ff8bf4e1",
                 "shasum": ""
             },
             "require": {
@@ -1251,7 +1251,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2015-08-12 18:16:08"
+            "time": "2015-09-04 12:46:14"
         },
         {
             "name": "laravel/socialite",
@@ -1761,6 +1761,56 @@
                 }
             ],
             "time": "2015-02-03 12:10:50"
+        },
+        {
+            "name": "predis/predis",
+            "version": "v1.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nrk/predis.git",
+                "reference": "84060b9034d756b4d79641667d7f9efe1aeb8e04"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nrk/predis/zipball/84060b9034d756b4d79641667d7f9efe1aeb8e04",
+                "reference": "84060b9034d756b4d79641667d7f9efe1aeb8e04",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.2"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0"
+            },
+            "suggest": {
+                "ext-curl": "Allows access to Webdis when paired with phpiredis",
+                "ext-phpiredis": "Allows faster serialization and deserialization of the Redis protocol"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Predis\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Daniele Alessandri",
+                    "email": "suppakilla@gmail.com",
+                    "homepage": "http://clorophilla.net"
+                }
+            ],
+            "description": "Flexible and feature-complete PHP client library for Redis",
+            "homepage": "http://github.com/nrk/predis",
+            "keywords": [
+                "nosql",
+                "predis",
+                "redis"
+            ],
+            "time": "2015-07-30 18:34:15"
         },
         {
             "name": "psr/http-message",

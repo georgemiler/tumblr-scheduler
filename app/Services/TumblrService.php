@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Like;
 use App\User;
 use Tumblr\API\Client;
+use Tumblr\API\RequestException;
 
 class TumblrService {
 
@@ -38,6 +39,25 @@ class TumblrService {
         if ($this->userHasTumblrConfigured($user)) {
             $this->getTumblrClient()->setToken($user->settings['tumblr.token'], $user->settings['tumblr.token_secret']);
             return $this;
+        }
+
+        return false;
+    }
+
+    public function canUserConnect(User $user)
+    {
+        if (!$this->userHasTumblrConfigured($user)) {
+            return false;
+        }
+
+        $this->setupUserTumblrConfig($user);
+
+        try {
+            $this->getTumblrClient()->getUserInfo();
+
+            return true;
+        } catch (RequestException $e) {
+            return false;
         }
     }
 
