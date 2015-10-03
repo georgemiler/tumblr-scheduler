@@ -51,6 +51,16 @@
                         </button>
                     </div>
 
+                    <div class="form-group">
+                        <a href="{{ URL::route('auth.tumblr') }}" class="btn btn-warning">
+                            @if ($canConnectToTumblr)
+                                Reauthenticate with Tumblr
+                            @else
+                                Authenticate with Tumblr
+                            @endif
+                        </a>
+                    </div>
+
                     {!! Form::close() !!}
                 </div>
             </div>

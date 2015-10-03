@@ -3,34 +3,37 @@ namespace App\Http\Controllers;
 
 
 use App\Repositories\User\UserRepositoryInterface;
+use App\Services\TumblrService;
 use App\User;
 use Illuminate\Auth\Guard;
 
 class UserSettingsController extends Controller
 {
     /**
-     * User model
-     *
-     * @var \App\User
+     * @var User
      */
     protected $User;
 
     /**
-     * Guard instance
-     *
      * @var Guard
      */
     protected $Auth;
+
+    /**
+     * @var TumblrService
+     */
+    protected $TumblrService;
 
     /**
      * @var UserRepositoryInterface
      */
     protected $UserRepository;
 
-    public function __construct(User $user, Guard $auth)
+    public function __construct(User $user, Guard $auth, TumblrService $tumblrService)
     {
         $this->Auth = $auth;
         $this->User = $user;
+        $this->TumblrService = $tumblrService;
 
         $this->middleware('auth');
     }
@@ -41,7 +44,12 @@ class UserSettingsController extends Controller
 
         $userSettings = $this->Auth->getUser()->settings()->all();
 
-        return \View::make('user-settings.index', compact('user', 'userSettings'));
+        $canConnectToTumblr = false;
+        if ($this->TumblrService->canUserConnect($user)) {
+            $canConnectToTumblr = true;
+        }
+
+        return \View::make('user-settings.index', compact('user', 'userSettings', 'canConnectToTumblr'));
     }
 
     public function store()
