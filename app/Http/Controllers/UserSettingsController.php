@@ -1,8 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 
-
-use App\Repositories\User\UserRepositoryInterface;
+use App\Http\Requests\StoreUserSettingsRequest;
 use App\Services\TumblrService;
 use App\User;
 use Illuminate\Auth\Guard;
@@ -41,24 +40,23 @@ class UserSettingsController extends Controller
     public function index()
     {
         $user = $this->Auth->getUser();
-
         $userSettings = $this->Auth->getUser()->settings()->all();
-
-        $canConnectToTumblr = false;
-        if ($this->TumblrService->canUserConnect($user)) {
-            $canConnectToTumblr = true;
-        }
+        $canConnectToTumblr = $this->TumblrService->canUserConnect($user);
 
         return \View::make('user-settings.index', compact('user', 'userSettings', 'canConnectToTumblr'));
     }
 
-    public function store()
+    public function store(StoreUserSettingsRequest $request)
     {
         $user = $this->Auth->getUser();
+        /* @var $user User */
 
-        $data = \Input::all();
-        var_dump($data);
+        if ($user->update(\Input::only(['name', 'email', 'password']))) {
+            \Flash::success('Successfully updated user settings.');
+            return redirect()->route('user.settings');
+        }
 
-
+        \Flash::error('Error saving user settings.');
+        return redirect()->route('user.settings');
     }
 }

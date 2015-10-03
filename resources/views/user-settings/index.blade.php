@@ -42,7 +42,7 @@
 
                     <div class="form-group">
                         {!! Form::label('Password (again)') !!}
-                        {!! Form::input('password', 'confirm_password', null, ['class' => 'form-control']) !!}
+                        {!! Form::input('password', 'password_confirmation', null, ['class' => 'form-control']) !!}
                     </div>
 
                     <div class="form-group">
@@ -50,6 +50,8 @@
                             Save
                         </button>
                     </div>
+
+                    <hr />
 
                     <div class="form-group">
                         <a href="{{ URL::route('auth.tumblr') }}" class="btn btn-warning">
