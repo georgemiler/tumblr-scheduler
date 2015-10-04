@@ -26,7 +26,7 @@ class StoreUserSettingsRequest extends Request
         return [
             'name' => 'required|max:255',
             'email' => 'required|email|max:255',
-            'password' => 'confirmed'
+            'password' => 'required|confirmed'
         ];
     }
 }
