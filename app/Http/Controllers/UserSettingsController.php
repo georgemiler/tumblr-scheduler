@@ -39,6 +39,12 @@ class UserSettingsController extends Controller
 
     public function index()
     {
+
+        $config = \App::getInstance()['config']->get('services.mailgun', []);
+
+        var_dump($config);
+
+
         $user = $this->Auth->getUser();
         $userSettings = $this->Auth->getUser()->settings()->all();
         $canConnectToTumblr = $this->TumblrService->canUserConnect($user);
